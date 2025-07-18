@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <p>Дата: 24.07.2025</p>
             <p>Место: ТРЦ Эпицентр, Боулинг</p>
             <p>Время: 15:30</p>
-            <p>Дресс-код: Коктейльный</p>
+            <p>Дресс-код: Одна из вещей на вас должна быть неонового цвета</p>
         `;
         
         modal.style.display = 'block';
