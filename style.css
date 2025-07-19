@@ -1,0 +1,397 @@
+/* Основные стили */
+:root {
+    --bg-color: #0a0a0a;
+    --terminal-bg: #0d1b1e;
+    --terminal-text: #00ff41;
+    --terminal-border: #008f11;
+    --btn-red: #ff5f56;
+    --btn-yellow: #ffbd2e;
+    --btn-green: #27c93f;
+    --highlight: #00b894;
+    --link-color: #00a8ff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--terminal-text);
+    font-family: 'Roboto Mono', monospace;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+/* Терминальный эффект */
+.terminal {
+    width: 90%;
+    max-width: 800px;
+    margin: 2rem auto;
+    border: 2px solid var(--terminal-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+    position: relative;
+    z-index: 10;
+    background-color: var(--terminal-bg);
+}
+
+.terminal-header {
+    background-color: #1a1a1a;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--terminal-border);
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.terminal-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.red { background-color: var(--btn-red); }
+.yellow { background-color: var(--btn-yellow); }
+.green { background-color: var(--btn-green); }
+
+.terminal-title {
+    margin-left: 1rem;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.terminal-body {
+    padding: 1.5rem;
+    line-height: 1.6;
+}
+
+/* Анимация печатающего текста */
+.typewriter {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0;
+    animation: typing 3.5s steps(40, end);
+}
+
+.delay-1 { animation-delay: 1s; }
+.delay-2 { animation-delay: 2s; }
+.delay-3 { animation-delay: 3s; }
+.delay-4 { animation-delay: 4s; }
+.delay-5 { animation-delay: 5s; }
+.delay-6 { animation-delay: 6s; }
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+/* Ссылки */
+.terminal-link {
+    display: block;
+    color: var(--link-color);
+    margin: 0.5rem 0;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.terminal-link:hover {
+    color: var(--highlight);
+    text-decoration: underline;
+}
+
+/* ASCII арт */
+.ascii-art {
+    margin: 1rem 0;
+    color: var(--highlight);
+    overflow-x: auto;
+    white-space: pre;
+    font-size: 0.7rem;
+    line-height: 1.2;
+}
+
+.highlight {
+    color: var(--highlight);
+    font-weight: bold;
+}
+
+/* Хакерский эффект на фоне */
+.hacker-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 65, 0.1),
+        rgba(0, 255, 65, 0.1) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.3;
+}
+
+/* Стили для страницы гостей */
+.guest-list {
+    margin-top: 2rem;
+}
+
+.guest-item {
+    padding: 0.8rem;
+    border-bottom: 1px dashed var(--terminal-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    transition: background-color 0.3s;
+}
+
+.guest-item:nth-child(odd) {
+    background-color: rgba(0, 255, 65, 0.05);
+}
+
+.guest-item:hover {
+    background-color: rgba(0, 255, 65, 0.1);
+}
+
+.guest-count {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.guest-name {
+    margin-right: 1rem;
+    flex-grow: 1;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: var(--terminal-bg);
+    margin: 10% auto;
+    padding: 2rem;
+    border: 2px solid var(--terminal-border);
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    z-index: 101;
+    color: var(--terminal-text);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+    animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-modal {
+    color: var(--terminal-text);
+    float: right;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+    line-height: 1;
+    margin-top: -0.5rem;
+}
+
+.close-modal:hover {
+    color: var(--highlight);
+}
+
+#fireworks-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.clickable {
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--highlight);
+    transition: color 0.3s;
+}
+
+.clickable:hover {
+    color: var(--link-color);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .terminal {
+        width: 95%;
+        margin: 1.5rem auto;
+    }
+    
+    .terminal-body {
+        padding: 1.2rem;
+    }
+    
+    .ascii-art {
+        font-size: 0.6rem;
+    }
+    
+    .guest-item {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+    
+    .modal-content {
+        width: 90%;
+        margin: 15% auto;
+        padding: 1.5rem;
+    }
+    
+    .close-modal {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .terminal {
+        width: 98%;
+        margin: 1rem auto;
+        border-radius: 6px;
+    }
+    
+    .terminal-header {
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .terminal-body {
+        padding: 1rem;
+    }
+    
+    .ascii-art {
+        font-size: 0.5rem;
+        margin: 0.5rem 0;
+    }
+    
+    .typewriter {
+        font-size: 0.9rem;
+    }
+    
+    .guest-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.8rem 0.6rem;
+    }
+    
+    .guest-name {
+        margin-bottom: 0.3rem;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 20% auto;
+        padding: 1.2rem;
+    }
+    
+    .close-modal {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .terminal {
+        border-radius: 4px;
+    }
+    
+    .terminal-header {
+        padding: 0.3rem 0.6rem;
+    }
+    
+    .terminal-title {
+        font-size: 0.7rem;
+        margin-left: 0.5rem;
+    }
+    
+    .terminal-body {
+        padding: 0.8rem;
+    }
+    
+    .ascii-art {
+        font-size: 0.4rem;
+    }
+    
+    .typewriter {
+        font-size: 0.8rem;
+    }
+    
+    .modal-content {
+        width: 98%;
+        margin: 25% auto;
+        padding: 1rem;
+    }
+    
+    .close-modal {
+        font-size: 1.2rem;
+    }
+}
+
+/* Дополнительные улучшения для очень маленьких экранов */
+@media (max-width: 340px) {
+    .terminal-buttons {
+        gap: 0.3rem;
+    }
+    
+    .terminal-btn {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .terminal-title {
+        font-size: 0.6rem;
+    }
+    
+    .terminal-body {
+        padding: 0.6rem;
+    }
+    
+    .ascii-art {
+        font-size: 0.35rem;
+    }
+    
+    .typewriter {
+        font-size: 0.75rem;
+    }
+    
+    .modal-content {
+        padding: 0.8rem;
+    }
+    
+    .modal-content h3 {
+        font-size: 1rem;
+    }
+    
+    .modal-content p {
+        font-size: 0.8rem;
+    }
+}
