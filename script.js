@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const invitedGuests = [
         { firstName: "Татьяна", lastName: "Вдовиченко", message: "Любимая, очень жду тебя на празднике❤❤❤" },
         { firstName: "Макс", lastName: "Устинов", message: "Максимилиан, жду тебя на торжестве в честь моего 18-ти летия!" },
-        { firstName: "Макс", lastName: "Медведев", message: "Дружище, жду тебя на празднике, в честь моего 18-ти летия" },
     ];
 
     localStorage.setItem('birthdayGuests', JSON.stringify(invitedGuests));
