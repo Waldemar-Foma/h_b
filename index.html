@@ -50,9 +50,6 @@
             position: relative;
         }
 
-        /* ============================================================
-           ФОН — слой с призраками, пакманами и надписями
-           ============================================================ */
         .bg-fun-layer {
             position: fixed;
             top: 0;
@@ -114,9 +111,6 @@
             100% { transform: translate(25px, -25px) scale(0.8) rotate(-5deg); }
         }
 
-        /* ============================================================
-           ОСНОВНОЙ КОНТЕЙНЕР — центрирование
-           ============================================================ */
         .wister-poster {
             max-width: 480px;
             width: 100%;
@@ -137,9 +131,6 @@
             min-height: clamp(400px, 60vh, 560px);
         }
 
-        /* ============================================================
-           ТИПОГРАФИКА — светлая и читаемая
-           ============================================================ */
         .hero-title-wrap {
             text-align: center;
             position: relative;
@@ -192,9 +183,6 @@
             100% { transform: scale(1) rotate(180deg); }
         }
 
-        /* ============================================================
-           КАРТОЧКИ — светлые и читаемые
-           ============================================================ */
         .content-card {
             background: rgba(42, 42, 62, 0.75);
             border-radius: clamp(20px, 4vw, 28px);
@@ -206,7 +194,6 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.03);
         }
 
-        /* Секция авторизации — центрируем содержимое */
         #loginSection {
             display: flex;
             flex-direction: column;
@@ -452,12 +439,6 @@
             animation: cardPulse 2s ease-in-out infinite;
             border-color: var(--acid-lime);
             box-shadow: 0 0 30px rgba(184, 230, 0, 0.06);
-        }
-
-        @keyframes cardPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.01); }
-            100% { transform: scale(1); }
         }
 
         .time-badge {
@@ -765,6 +746,85 @@
             font-size: 0.85em;
             opacity: 0.7;
         }
+
+        /* === Уникальный блок для именинника === */
+        .hero-badge {
+            background: rgba(255,255,255,0.04);
+            border-radius: 40px;
+            padding: 4px 16px 4px 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255,215,0,0.2);
+            margin-bottom: 12px;
+            font-family: 'Unbounded', sans-serif;
+            font-size: clamp(0.5rem, 1.2vw, 0.6rem);
+            color: #ffd966;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .hero-badge i {
+            font-size: 1.1em;
+        }
+
+        .list-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin: 8px 0 4px;
+        }
+        .list-grid .list-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0,0,0,0.2);
+            padding: 6px 14px 6px 10px;
+            border-radius: 30px;
+            font-size: clamp(0.6rem, 1.4vw, 0.7rem);
+            color: var(--text-secondary);
+            border-left: 3px solid var(--acid-lime);
+        }
+        .list-grid .list-item i {
+            color: var(--acid-lime);
+            font-size: 0.9rem;
+            width: 20px;
+            text-align: center;
+        }
+        .list-grid .list-item .item-label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .list-grid .list-item .item-desc {
+            opacity: 0.7;
+            font-size: 0.85em;
+        }
+        .divider-light {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin: 12px 0;
+        }
+        .shopping-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+            justify-content: center;
+            padding: 4px 0;
+        }
+        .shopping-row span {
+            background: rgba(0,0,0,0.25);
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: clamp(0.5rem, 1.2vw, 0.6rem);
+            color: var(--text-secondary);
+            border: 1px solid rgba(255,255,255,0.04);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .shopping-row span i {
+            color: var(--acid-lime);
+            font-size: 0.7rem;
+        }
     </style>
 </head>
 <body>
@@ -834,6 +894,7 @@
         <div id="loginSection" class="content-card">
             <label class="input-label-tech">
                 <i class="bi bi-shield-check"></i> Выполни вход
+                <p>&nbsp;</p>
             <div class="input-group-custom">
                 <input type="text" id="codeInput" class="wister-input" placeholder="Введи код дружбы:" maxlength="20" autofocus inputmode="text" />
                 <button id="enterBtn" class="wister-btn"><i class="bi bi-box-arrow-in-right"></i> Войти</button>
@@ -934,6 +995,11 @@
                         <span class="tag-dot" style="background: #9013FE;"></span>
                         <span class="tag-name">ФИОЛЕТОВЫЙ</span>
                     </div>
+                    <!-- Белый для именинника -->
+                    <div class="color-tag" style="--color: #ffffff;">
+                        <span class="tag-dot" style="background: #ffffff;"></span>
+                        <span class="tag-name">БЕЛЫЙ</span>
+                    </div>
                 </div>
             </div>
 
@@ -957,7 +1023,6 @@
     </div>
 
     <script>
-        // Данные пользователей и привязка цветов (HEX + название)
         const friends = {
             'ВРЕДИНА': { name: 'Танюшка', colorName: 'РОЗОВЫЙ', hex: '#FFC0CB' },
             'ДАШК1_5': { name: 'Даша', colorName: 'ОРАНЖЕВЫЙ', hex: '#FF6715' },
@@ -965,6 +1030,8 @@
             'ВИКА': { name: 'Вика', colorName: 'ЖЁЛТЫЙ', hex: '#FFEF36' },
             'ДАНЬКА': { name: 'Данька', colorName: 'ЗЕЛЁНЫЙ', hex: '#00CF20' },
             'ПАРОВОЗ': { name: 'Мила', colorName: 'ФИОЛЕТОВЫЙ', hex: '#9013FE' },
+            // Именинник
+            'ГЕНИЙ067': { name: 'ИМЕНИННИК', colorName: 'БЕЛЫЙ', hex: '#ffffff' }
         };
 
         const loginSection = document.getElementById('loginSection');
@@ -998,7 +1065,6 @@
             guestNameSpan.textContent = friend.name.toUpperCase();
             userColorName.textContent = friend.colorName;
 
-            // Подсветка цветовой карточки
             const colorHex = friend.hex || '#555';
             cardColorName.textContent = friend.colorName;
             cardColorDot.style.background = colorHex;
@@ -1006,17 +1072,58 @@
             colorCard.classList.add('active');
             colorCard.style.borderColor = colorHex;
 
-            // Подсветка баннера
             welcomeBanner.style.background = colorHex;
             welcomeBanner.style.boxShadow = `0 4px 0 rgba(0,0,0,0.2), 0 0 40px ${colorHex}33`;
 
-            // Подсветка цвета в хедере
             document.querySelector('.color-header span:last-child').style.color = colorHex;
 
-            // Подсветка иконок в data-row
             document.querySelectorAll('.data-row i').forEach(icon => {
                 icon.style.color = colorHex;
             });
+
+            // ---- УНИКАЛЬНЫЙ БЛОК ДЛЯ ИМЕНИННИКА ----
+            // Если код ГЕНИЙ067 — добавляем личную инфу
+            if (rawCode === 'ГЕНИЙ067') {
+                // Вставляем блок после welcome-banner
+                const existingHero = document.getElementById('heroBlock');
+                if (!existingHero) {
+                    const heroBlock = document.createElement('div');
+                    heroBlock.id = 'heroBlock';
+                    heroBlock.style.marginBottom = '14px';
+                    heroBlock.innerHTML = `
+                        <div class="hero-badge"><i class="bi bi-crown-fill"></i> ДЕНЬ РОЖДЕНИЯ</div>
+                        <div style="background:rgba(255,255,255,0.03);border-radius:20px;padding:12px 14px;border:1px solid rgba(255,215,0,0.08);">
+                            <div style="font-family:'Unbounded',sans-serif;font-size:clamp(0.65rem,1.6vw,0.8rem);color:var(--text-primary);margin-bottom:8px;display:flex;align-items:center;gap:8px;">
+                                <i class="bi bi-list-check" style="color:var(--acid-lime);"></i> ЧТО ВЗЯТЬ С СОБОЙ
+                            </div>
+                            <div class="list-grid">
+                                <div class="list-item"><i class="bi bi-droplet-fill"></i> <span class="item-label">Крем от загара</span> <span class="item-desc">SPF 50+</span></div>
+                                <div class="list-item"><i class="bi bi-cup-straw"></i> <span class="item-label">Много воды</span> <span class="item-desc">2+ литра</span></div>
+                                <div class="list-item"><i class="bi bi-headphones"></i> <span class="item-label">Колонка / наушники</span> <span class="item-desc">плейлист в кармане</span></div>
+                                <div class="list-item"><i class="bi bi-umbrella"></i> <span class="item-label">Зонт/тент</span> <span class="item-desc">если припечёт</span></div>
+                                <div class="list-item"><i class="bi bi-camera"></i> <span class="item-label">Камера или плёнка</span> <span class="item-desc">для моментов</span></div>
+                            </div>
+                            <hr class="divider-light" />
+                            <div style="font-family:'Unbounded',sans-serif;font-size:clamp(0.55rem,1.3vw,0.65rem);color:var(--text-muted);display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                                <i class="bi bi-bag-fill" style="color:var(--acid-lime);"></i> СПИСОК ПОКУПОК (для всех)
+                            </div>
+                            <div class="shopping-row">
+                                <span><i class="bi bi-dice-5"></i> Чипсы / снеки</span>
+                                <span><i class="bi bi-cup-hot"></i> Лимонад / кола</span>
+                                <span><i class="bi bi-pizza"></i> Пицца (2 шт)</span>
+                                <span><i class="bi bi-egg-fried"></i> Яйца для салата</span>
+                                <span><i class="bi bi-droplet-half"></i> Лед в пакетах</span>
+                            </div>
+                        </div>
+                    `;
+                    // вставляем после welcomeBanner
+                    welcomeBanner.parentNode.insertBefore(heroBlock, welcomeBanner.nextSibling);
+                }
+            } else {
+                // если зашли как друг — удаляем блок именинника, если он был
+                const heroBlock = document.getElementById('heroBlock');
+                if (heroBlock) heroBlock.remove();
+            }
 
             startCountdown();
         }
