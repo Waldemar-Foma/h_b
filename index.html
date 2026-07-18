@@ -991,10 +991,6 @@
                         <span class="tag-dot" style="background: #00CF20;"></span>
                         <span class="tag-name">ЗЕЛЁНЫЙ</span>
                     </div>
-                    <div class="color-tag" style="--color: #9013FE;">
-                        <span class="tag-dot" style="background: #9013FE;"></span>
-                        <span class="tag-name">ФИОЛЕТОВЫЙ</span>
-                    </div>
                 </div>
             </div>
 
@@ -1024,8 +1020,6 @@
             'МАКСЮША': { name: 'МакZ', colorName: 'СИНИЙ', hex: '#1E90FF' },
             'ВИКА': { name: 'Вика', colorName: 'ЖЁЛТЫЙ', hex: '#FFEF36' },
             'ДАНЬКА': { name: 'Данька', colorName: 'ЗЕЛЁНЫЙ', hex: '#00CF20' },
-            'ПАРОВОЗ': { name: 'Мила', colorName: 'ФИОЛЕТОВЫЙ', hex: '#9013FE' },
-            // Именинник
             'ГЕНИЙ067': { name: 'ИМЕНИННИК', colorName: 'БЕЛЫЙ', hex: '#ffffff' }
         };
 
@@ -1075,11 +1069,8 @@
             document.querySelectorAll('.data-row i').forEach(icon => {
                 icon.style.color = colorHex;
             });
-
-            // ---- УНИКАЛЬНЫЙ БЛОК ДЛЯ ИМЕНИННИКА ----
-            // Если код ГЕНИЙ067 — добавляем личную инфу
+            
             if (rawCode === 'ГЕНИЙ067') {
-                // Вставляем блок после welcome-banner
                 const existingHero = document.getElementById('heroBlock');
                 if (!existingHero) {
                     const heroBlock = document.createElement('div');
@@ -1092,9 +1083,9 @@
                                 <i class="bi bi-list-check" style="color:var(--acid-lime);"></i> ЧТО ВЗЯТЬ С СОБОЙ
                             </div>
                             <div class="list-grid">
-                                <div class="list-item"><i class="bi bi-droplet-fill"></i> <span class="item-label">Крем от загара</span> <span class="item-desc">SPF 50+</span></div>
+                                <div class="list-item"><i class="bi bi-droplet-fill"></i> <span class="item-label">Зонт пляжный </span> <span class="item-desc">SPF 50+</span></div>
                                 <div class="list-item"><i class="bi bi-cup-straw"></i> <span class="item-label">Много воды</span> <span class="item-desc">2+ литра</span></div>
-                                <div class="list-item"><i class="bi bi-headphones"></i> <span class="item-label">Колонка / наушники</span> <span class="item-desc">плейлист в кармане</span></div>
+                                <div class="list-item"><i class="bi bi-headphones"></i> <span class="item-label"></span> <span class="item-desc">плейлист в кармане</span></div>
                                 <div class="list-item"><i class="bi bi-umbrella"></i> <span class="item-label">Зонт/тент</span> <span class="item-desc">если припечёт</span></div>
                                 <div class="list-item"><i class="bi bi-camera"></i> <span class="item-label">Камера или плёнка</span> <span class="item-desc">для моментов</span></div>
                             </div>
@@ -1103,11 +1094,10 @@
                                 <i class="bi bi-bag-fill" style="color:var(--acid-lime);"></i> СПИСОК ПОКУПОК (для всех)
                             </div>
                             <div class="shopping-row">
-                                <span><i class="bi bi-dice-5"></i> Чипсы / снеки</span>
-                                <span><i class="bi bi-cup-hot"></i> Лимонад / кола</span>
-                                <span><i class="bi bi-pizza"></i> Пицца (2 шт)</span>
-                                <span><i class="bi bi-egg-fried"></i> Яйца для салата</span>
-                                <span><i class="bi bi-droplet-half"></i> Лед в пакетах</span>
+                                <span> Кола 2л</span>
+                                <span> Чтото, пить из б/а</span>
+                                <span>Пицца (4 шт)</span>
+                                <span>Стаканы одноразовые </span>
                             </div>
                         </div>
                     `;
@@ -1115,7 +1105,7 @@
                     welcomeBanner.parentNode.insertBefore(heroBlock, welcomeBanner.nextSibling);
                 }
             } else {
-                // если зашли как друг — удаляем блок именинника, если он был
+        
                 const heroBlock = document.getElementById('heroBlock');
                 if (heroBlock) heroBlock.remove();
             }
@@ -1124,7 +1114,7 @@
         }
 
         function startCountdown() {
-            const target = new Date('July 24, 2026 11:10:00').getTime();
+            const target = new Date('July 24, 2026 11:00:00').getTime();
 
             function update() {
                 const now = Date.now();
