@@ -11,6 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Unbounded:wght@700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
 
     <style>
+        /* ============================================================
+           ВСЕ СТИЛИ
+           ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -28,6 +31,9 @@
             --text-muted: #8e92aa;
             --border-subtle: #3a3c54;
             --shadow-color: rgba(0, 0, 0, 0.6);
+            --font-size-base: clamp(0.7rem, 1.4vw, 0.8rem);
+            --font-size-right: clamp(0.85rem, 1.8vw, 1.05rem);
+            --font-size-mobile: clamp(0.8rem, 2.2vw, 1rem);
         }
 
         html {
@@ -111,8 +117,89 @@
             100% { transform: translate(25px, -25px) scale(0.8) rotate(-5deg); }
         }
 
-        .wister-poster {
-            max-width: 480px;
+        /* ============================================================
+           КОМПАКТНАЯ ПОДЛОЖКА ДЛЯ СТРАНИЦЫ ВХОДА
+           ============================================================ */
+        #loginWrapper {
+            max-width: 420px;
+            width: 100%;
+            background: rgba(26, 26, 38, 0.94);
+            border-radius: clamp(28px, 6vw, 40px);
+            padding: clamp(20px, 4vw, 28px) clamp(20px, 4vw, 32px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.04);
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            margin: 0 auto;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #loginWrapper .hero-title-wrap {
+            text-align: center;
+            position: relative;
+            padding-bottom: clamp(8px, 1.5vw, 12px);
+        }
+
+        #loginWrapper .wister-text {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(2.6rem, 10vw, 4rem);
+            line-height: 0.8;
+            color: var(--soft-pink);
+            letter-spacing: -3px;
+            text-transform: capitalize;
+            display: block;
+            margin-bottom: 4px;
+            text-shadow: 0 0 40px rgba(240, 176, 204, 0.12);
+            word-break: break-word;
+        }
+
+        #loginWrapper .wister-sub {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 900;
+            font-size: clamp(1rem, 4vw, 1.6rem);
+            line-height: 0.9;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            display: block;
+            text-shadow: 0 0 30px rgba(184, 230, 0, 0.06);
+            word-break: break-word;
+        }
+
+        #loginWrapper .wister-star {
+            position: absolute;
+            top: clamp(4px, 1vw, 8px);
+            right: clamp(10px, 3vw, 24px);
+            width: clamp(22px, 5vw, 30px);
+            height: clamp(22px, 5vw, 30px);
+            background: var(--soft-pink);
+            clip-path: polygon(50% 0%, 54% 38%, 100% 50%, 54% 62%, 50% 100%, 46% 62%, 0% 50%, 46% 38%);
+            animation: spin-pulse 8s infinite ease-in-out;
+            opacity: 0.5;
+            box-shadow: 0 0 30px rgba(240, 176, 204, 0.08);
+        }
+
+        #loginWrapper .content-card {
+            background: rgba(42, 42, 62, 0.75);
+            border-radius: clamp(20px, 4vw, 28px);
+            padding: clamp(16px, 3vw, 24px);
+            margin-top: clamp(12px, 2.5vw, 18px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        /* ============================================================
+           ОСНОВНАЯ ПОДЛОЖКА ДЛЯ КОНТЕНТА
+           ============================================================ */
+        #contentWrapper {
+            max-width: 860px;
             width: 100%;
             background: rgba(26, 26, 38, 0.94);
             border-radius: clamp(28px, 6vw, 40px);
@@ -125,19 +212,18 @@
             border: 1px solid rgba(255, 255, 255, 0.03);
             margin: 0 auto;
             transition: all 0.2s ease;
-            display: flex;
+            display: none;
             flex-direction: column;
-            justify-content: center;
             min-height: clamp(400px, 60vh, 560px);
         }
 
-        .hero-title-wrap {
+        #contentWrapper .hero-title-wrap {
             text-align: center;
             position: relative;
             padding-bottom: clamp(10px, 2vw, 16px);
         }
 
-        .wister-text {
+        #contentWrapper .wister-text {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
             font-size: clamp(3rem, 12vw, 4.8rem);
@@ -151,7 +237,7 @@
             word-break: break-word;
         }
 
-        .wister-sub {
+        #contentWrapper .wister-sub {
             font-family: 'Unbounded', sans-serif;
             font-weight: 900;
             font-size: clamp(1.2rem, 5vw, 2rem);
@@ -164,7 +250,7 @@
             word-break: break-word;
         }
 
-        .wister-star {
+        #contentWrapper .wister-star {
             position: absolute;
             top: clamp(6px, 1.5vw, 10px);
             right: clamp(14px, 4vw, 30px);
@@ -177,13 +263,7 @@
             box-shadow: 0 0 30px rgba(240, 176, 204, 0.08);
         }
 
-        @keyframes spin-pulse {
-            0% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.08) rotate(90deg); background: var(--acid-lime); opacity: 0.7; }
-            100% { transform: scale(1) rotate(180deg); }
-        }
-
-        .content-card {
+        #contentWrapper .content-card {
             background: rgba(42, 42, 62, 0.75);
             border-radius: clamp(20px, 4vw, 28px);
             padding: clamp(14px, 3vw, 22px) clamp(12px, 2.5vw, 16px) clamp(14px, 3vw, 18px);
@@ -194,19 +274,543 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.03);
         }
 
+        @keyframes spin-pulse {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.08) rotate(90deg); background: var(--acid-lime); opacity: 0.7; }
+            100% { transform: scale(1) rotate(180deg); }
+        }
+
+        /* ============================================================
+           ОБЩИЕ СТИЛИ
+           ============================================================ */
+        .poster-row {
+            display: flex;
+            gap: clamp(16px, 3vw, 24px);
+            align-items: stretch;
+            flex: 1;
+        }
+
+        .poster-main {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ============================================================
+           ДЕСКТОПНЫЙ БЛОК ПОГОДЫ
+           ============================================================ */
+        .weather-desktop {
+            flex: 0 0 clamp(200px, 26vw, 250px);
+            background: rgba(18, 18, 28, 0.7);
+            border-radius: clamp(18px, 3vw, 24px);
+            padding: clamp(16px, 2.5vw, 24px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            gap: 8px;
+            min-height: 200px;
+        }
+
+        .weather-desktop .weather-icon-big {
+            font-size: clamp(3.2rem, 6vw, 4.4rem);
+        }
+
+        .weather-desktop .weather-temp-big {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .weather-desktop .weather-temp-big sup {
+            font-size: 0.5em;
+            font-weight: 700;
+            color: var(--text-muted);
+            top: -0.5em;
+        }
+
+        .weather-desktop .weather-desc-big {
+            font-size: var(--font-size-right);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .weather-desktop .weather-details {
+            width: 100%;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .weather-desktop .weather-detail {
+            display: flex;
+            justify-content: space-between;
+            font-size: var(--font-size-right);
+            color: var(--text-muted);
+            font-weight: 500;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .weather-desktop .weather-detail i {
+            color: var(--soft-pink);
+            opacity: 0.7;
+            width: 22px;
+            font-size: calc(var(--font-size-right) * 1.1);
+        }
+
+        .weather-desktop .weather-detail span:last-child {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .weather-desktop .weather-badge {
+            background: rgba(184, 230, 0, 0.08);
+            border: 1px solid rgba(184, 230, 0, 0.1);
+            border-radius: 30px;
+            padding: 4px 18px;
+            font-size: calc(var(--font-size-right) * 0.75);
+            text-transform: uppercase;
+            color: var(--acid-lime);
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .weather-desktop .color-tags-compact {
+            width: 100%;
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .weather-desktop .color-tags-compact .color-dot {
+            width: clamp(20px, 2.5vw, 28px);
+            height: clamp(20px, 2.5vw, 28px);
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.1);
+            transition: transform 0.2s;
+            flex-shrink: 0;
+            cursor: default;
+        }
+
+        .weather-desktop .color-tags-compact .color-dot:hover {
+            transform: scale(1.1);
+        }
+
+        .weather-desktop .color-label-compact {
+            font-family: 'Unbounded', sans-serif;
+            font-size: calc(var(--font-size-right) * 0.55);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: 100%;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+           БЛОК ЦВЕТОВ В ОСНОВНОЙ КОЛОНКЕ (десктоп + мобилка)
+           ============================================================ */
+        .color-party-box-main {
+            background: rgba(18, 18, 28, 0.5);
+            border-radius: clamp(16px, 3vw, 20px);
+            padding: clamp(14px, 2.5vw, 18px) clamp(12px, 2vw, 16px);
+            margin-top: clamp(10px, 2vw, 14px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .color-party-box-main .color-header-main {
+            font-family: 'Unbounded', sans-serif;
+            font-size: var(--font-size-base);
+            color: var(--text-secondary);
+            margin-bottom: clamp(10px, 1.8vw, 14px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 4px;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .color-party-box-main .color-header-main span:last-child {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4px clamp(14px, 2.5vw, 20px);
+            border-radius: 20px;
+            font-weight: 900;
+            color: var(--acid-lime);
+            font-size: calc(var(--font-size-base) * 1.2);
+            transition: color 0.5s ease;
+        }
+
+        .color-tags-wrapper-main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: clamp(8px, 1.5vw, 14px);
+        }
+
+        .color-tag-main {
+            display: flex;
+            align-items: center;
+            gap: clamp(6px, 1vw, 10px);
+            background: rgba(0, 0, 0, 0.3);
+            padding: clamp(6px, 1vw, 10px) clamp(14px, 2vw, 20px) clamp(6px, 1vw, 10px) clamp(10px, 1.5vw, 14px);
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+
+        .color-tag-main:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--color);
+            transform: scale(1.03);
+        }
+
+        .color-tag-main .tag-dot {
+            width: clamp(14px, 2vw, 20px);
+            height: clamp(14px, 2vw, 20px);
+            border-radius: 50%;
+            flex-shrink: 0;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .color-tag-main .tag-name {
+            font-family: 'Unbounded', sans-serif;
+            font-size: var(--font-size-base);
+            font-weight: 700;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        /* ============================================================
+           ХЕШТЕГИ В ОСНОВНОЙ КОЛОНКЕ
+           ============================================================ */
+        .hash-group-main {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(6px, 1.2vw, 10px);
+            margin-top: clamp(12px, 2vw, 16px);
+            justify-content: center;
+        }
+
+        .hash-group-main span {
+            background: rgba(30, 32, 48, 0.6);
+            color: var(--text-secondary);
+            padding: clamp(5px, 1vw, 8px) clamp(14px, 2.5vw, 20px);
+            border-radius: 30px;
+            font-size: var(--font-size-base);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.2s;
+        }
+
+        .hash-group-main span:hover {
+            background: rgba(184, 230, 0, 0.08);
+            border-color: rgba(184, 230, 0, 0.15);
+            color: var(--acid-lime);
+        }
+
+        /* ============================================================
+           МОБИЛЬНЫЙ БЛОК ЦВЕТОВ (полноценный, как на десктопе)
+           ============================================================ */
+        .color-party-box-mobile {
+            display: none;
+            background: rgba(18, 18, 28, 0.5);
+            border-radius: clamp(16px, 3vw, 20px);
+            padding: clamp(14px, 2.5vw, 18px) clamp(12px, 2vw, 16px);
+            margin-top: clamp(10px, 2vw, 14px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .color-party-box-mobile .color-header-mobile {
+            font-family: 'Unbounded', sans-serif;
+            font-size: var(--font-size-mobile);
+            color: var(--text-secondary);
+            margin-bottom: clamp(10px, 1.8vw, 14px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 4px;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .color-party-box-mobile .color-header-mobile span:last-child {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4px clamp(14px, 2.5vw, 20px);
+            border-radius: 20px;
+            font-weight: 900;
+            color: var(--acid-lime);
+            font-size: calc(var(--font-size-mobile) * 1.2);
+            transition: color 0.5s ease;
+        }
+
+        .color-tags-wrapper-mobile {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: clamp(8px, 1.5vw, 14px);
+        }
+
+        .color-tag-mobile {
+            display: flex;
+            align-items: center;
+            gap: clamp(6px, 1vw, 10px);
+            background: rgba(0, 0, 0, 0.3);
+            padding: clamp(8px, 1.2vw, 12px) clamp(16px, 2.5vw, 22px) clamp(8px, 1.2vw, 12px) clamp(12px, 1.8vw, 16px);
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+
+        .color-tag-mobile .tag-dot {
+            width: clamp(16px, 2.2vw, 22px);
+            height: clamp(16px, 2.2vw, 22px);
+            border-radius: 50%;
+            flex-shrink: 0;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .color-tag-mobile .tag-name {
+            font-family: 'Unbounded', sans-serif;
+            font-size: var(--font-size-mobile);
+            font-weight: 700;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        /* ============================================================
+           МОБИЛЬНЫЙ БЛОК ХЕШТЕГОВ
+           ============================================================ */
+        .hash-group-mobile {
+            display: none;
+            flex-wrap: wrap;
+            gap: clamp(8px, 1.5vw, 12px);
+            margin-top: clamp(14px, 2.5vw, 18px);
+            justify-content: center;
+        }
+
+        .hash-group-mobile span {
+            background: rgba(30, 32, 48, 0.6);
+            color: var(--text-secondary);
+            padding: clamp(6px, 1vw, 10px) clamp(16px, 2.5vw, 22px);
+            border-radius: 30px;
+            font-size: var(--font-size-mobile);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        /* ============================================================
+           МОБИЛЬНЫЙ ТАЙМЕР
+           ============================================================ */
+        .time-badge-mobile {
+            display: none;
+            background: rgba(18, 18, 28, 0.6);
+            border-radius: clamp(14px, 2.5vw, 18px);
+            padding: clamp(12px, 2vw, 16px) clamp(14px, 2.5vw, 18px);
+            margin: clamp(12px, 2vw, 16px) 0 clamp(12px, 2vw, 16px);
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: var(--font-size-mobile);
+            color: var(--text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .time-badge-mobile #countdownMobile {
+            background: rgba(0, 0, 0, 0.4);
+            color: var(--acid-lime);
+            padding: 4px clamp(12px, 2.5vw, 16px);
+            border-radius: 14px;
+            font-size: calc(var(--font-size-mobile) * 1.3);
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(184, 230, 0, 0.08);
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ============================================================
+           ОБЩИЕ КОМПОНЕНТЫ
+           ============================================================ */
+        .weather-mobile-toggle {
+            display: none;
+            position: fixed;
+            bottom: 24px;
+            right: 20px;
+            z-index: 100;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--acid-lime);
+            color: #0e0e18;
+            border: none;
+            font-size: 1.6rem;
+            box-shadow: 0 6px 24px rgba(184, 230, 0, 0.25), 0 0 0 2px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.2s;
+            align-items: center;
+            justify-content: center;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .weather-mobile-toggle:active {
+            transform: scale(0.92);
+        }
+
+        .weather-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeInModal 0.25s ease;
+        }
+
+        .weather-modal.active {
+            display: flex;
+        }
+
+        .weather-modal-content {
+            background: var(--bg-graphite);
+            border-radius: 32px;
+            padding: 28px 24px 24px;
+            max-width: 340px;
+            width: 100%;
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            text-align: center;
+            position: relative;
+        }
+
+        .weather-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.4rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            transition: color 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .weather-modal-close:active {
+            color: var(--text-primary);
+        }
+
+        .weather-modal .modal-icon {
+            font-size: 3.6rem;
+            margin-bottom: 4px;
+        }
+
+        .weather-modal .modal-temp {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 900;
+            font-size: 2.6rem;
+            color: var(--text-primary);
+        }
+
+        .weather-modal .modal-temp sup {
+            font-size: 0.5em;
+            color: var(--text-muted);
+            top: -0.5em;
+        }
+
+        .weather-modal .modal-desc {
+            font-size: var(--font-size-base);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 4px 0 12px;
+        }
+
+        .weather-modal .modal-details {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            text-align: left;
+            background: rgba(0,0,0,0.25);
+            border-radius: 16px;
+            padding: 12px 16px;
+            margin: 8px 0 12px;
+        }
+
+        .weather-modal .modal-details .detail-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: var(--font-size-base);
+            color: var(--text-muted);
+        }
+
+        .weather-modal .modal-details .detail-row span:last-child {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .weather-modal .modal-badge {
+            background: rgba(184, 230, 0, 0.08);
+            border: 1px solid rgba(184, 230, 0, 0.1);
+            border-radius: 30px;
+            padding: 4px 20px;
+            font-size: var(--font-size-base);
+            text-transform: uppercase;
+            color: var(--acid-lime);
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        @keyframes fadeInModal {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* АВТОРИЗАЦИЯ — компактная форма */
         #loginSection {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            width: 100%;
         }
 
         .input-label-tech {
             font-family: 'Unbounded', sans-serif;
-            font-size: clamp(0.55rem, 1.5vw, 0.65rem);
+            font-size: var(--font-size-base);
             color: var(--acid-lime);
             text-transform: uppercase;
             display: block;
-            margin-bottom: clamp(8px, 1.5vw, 12px);
+            margin-bottom: clamp(6px, 1vw, 10px);
             letter-spacing: 0.5px;
             opacity: 0.9;
             text-align: center;
@@ -215,18 +819,18 @@
         .input-group-custom {
             display: flex;
             flex-direction: column;
-            gap: clamp(8px, 2vw, 12px);
+            gap: clamp(6px, 1.5vw, 10px);
         }
 
         .wister-input {
             width: 100%;
             background: var(--bg-input);
             border: 2px solid var(--border-subtle);
-            border-radius: clamp(16px, 3vw, 20px);
-            padding: clamp(14px, 2.5vw, 18px) clamp(10px, 2vw, 14px);
+            border-radius: clamp(14px, 2.5vw, 18px);
+            padding: clamp(10px, 1.8vw, 14px) clamp(10px, 2vw, 14px);
             color: var(--text-primary);
             font-family: 'Unbounded', sans-serif;
-            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            font-size: var(--font-size-base);
             text-transform: uppercase;
             outline: none;
             text-align: center;
@@ -243,7 +847,7 @@
 
         .wister-input::placeholder {
             color: rgba(255, 255, 255, 0.12);
-            font-size: clamp(0.5rem, 1.5vw, 0.65rem);
+            font-size: var(--font-size-base);
             letter-spacing: 0.5px;
         }
 
@@ -252,11 +856,11 @@
             background: var(--acid-lime);
             color: #0e0e18;
             border: none;
-            border-radius: clamp(16px, 3vw, 20px);
-            padding: clamp(14px, 2.5vw, 18px) clamp(10px, 2vw, 12px);
+            border-radius: clamp(14px, 2.5vw, 18px);
+            padding: clamp(10px, 1.8vw, 14px) clamp(10px, 2vw, 12px);
             font-family: 'Unbounded', sans-serif;
             font-weight: 900;
-            font-size: clamp(0.65rem, 1.8vw, 0.8rem);
+            font-size: var(--font-size-base);
             text-transform: uppercase;
             cursor: pointer;
             box-shadow: 0 6px 0 #0a0a12, 0 6px 20px rgba(184, 230, 0, 0.12);
@@ -276,33 +880,15 @@
             box-shadow: 0 2px 0 #0a0a12, 0 6px 16px rgba(184, 230, 0, 0.08);
         }
 
-        @media (hover: none) {
-            .wister-btn:active {
-                transform: translateY(4px);
-                box-shadow: 0 2px 0 #0a0a12;
-            }
-            .gift-link-btn:active {
-                transform: translateY(4px);
-                box-shadow: 0 2px 0 #0a0a12;
-            }
-        }
-
         .system-error {
             color: #ff6b8a;
             font-family: 'Unbounded', sans-serif;
-            font-size: clamp(0.5rem, 1.2vw, 0.6rem);
+            font-size: var(--font-size-base);
             text-align: center;
-            margin-top: clamp(8px, 1.5vw, 10px);
+            margin-top: clamp(6px, 1vw, 8px);
             min-height: 16px;
             font-weight: 700;
             letter-spacing: 0.3px;
-        }
-
-        /* ============================================================
-           ДИНАМИЧЕСКИЙ КОНТЕНТ — светлый, читаемый
-           ============================================================ */
-        #contentSection {
-            display: none;
         }
 
         .welcome-banner {
@@ -310,7 +896,7 @@
             color: #0e0e18;
             font-family: 'Unbounded', sans-serif;
             font-weight: 900;
-            font-size: clamp(0.65rem, 1.8vw, 0.8rem);
+            font-size: var(--font-size-base);
             text-align: center;
             padding: clamp(10px, 2vw, 12px) clamp(10px, 2vw, 14px);
             border-radius: clamp(16px, 3vw, 20px);
@@ -326,12 +912,27 @@
             transition: background 0.5s ease, box-shadow 0.5s ease;
         }
 
-        .welcome-banner .color-highlight {
-            display: inline-block;
-            padding: 2px 12px;
-            border-radius: 12px;
-            background: rgba(0,0,0,0.15);
-            transition: all 0.5s ease;
+        .logout-btn {
+            background: rgba(0, 0, 0, 0.2);
+            border: none;
+            color: #0e0e18;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: calc(var(--font-size-base) * 0.7);
+            padding: 4px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.2s;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .logout-btn:hover {
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .logout-btn:active {
+            transform: scale(0.95);
         }
 
         .data-list {
@@ -352,7 +953,7 @@
         }
 
         .data-row i {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-size: calc(var(--font-size-base) * 1.4);
             color: var(--soft-pink);
             min-width: clamp(18px, 4vw, 22px);
             text-align: center;
@@ -369,7 +970,7 @@
         }
 
         .data-row .row-tag {
-            font-size: clamp(0.35rem, 0.8vw, 0.4rem);
+            font-size: calc(var(--font-size-base) * 0.5);
             font-family: 'Unbounded', sans-serif;
             color: var(--text-muted);
             text-transform: uppercase;
@@ -379,7 +980,7 @@
         .data-row .row-main {
             color: var(--text-primary);
             font-weight: 600;
-            font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+            font-size: var(--font-size-base);
             margin-top: 1px;
             letter-spacing: 0.2px;
             word-break: break-word;
@@ -392,7 +993,6 @@
             font-size: 0.85em;
         }
 
-        /* Карта-цвет — вместо пропуска */
         .color-card {
             background: rgba(18, 18, 28, 0.6);
             border-radius: clamp(14px, 2.5vw, 18px);
@@ -409,7 +1009,7 @@
 
         .color-card .card-label {
             font-family: 'Unbounded', sans-serif;
-            font-size: clamp(0.5rem, 1.2vw, 0.6rem);
+            font-size: var(--font-size-base);
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -418,7 +1018,7 @@
         .color-card .card-value {
             font-family: 'Unbounded', sans-serif;
             font-weight: 900;
-            font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+            font-size: calc(var(--font-size-base) * 1.3);
             color: var(--text-primary);
             transition: color 0.5s ease;
             padding: 4px 16px;
@@ -441,275 +1041,6 @@
             box-shadow: 0 0 30px rgba(184, 230, 0, 0.06);
         }
 
-        .time-badge {
-            background: rgba(18, 18, 28, 0.6);
-            border-radius: clamp(14px, 2.5vw, 18px);
-            padding: clamp(10px, 2vw, 12px) clamp(12px, 2.5vw, 16px);
-            margin: clamp(10px, 2vw, 14px) 0 clamp(10px, 2vw, 12px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: 'Unbounded', sans-serif;
-            font-weight: 700;
-            font-size: clamp(0.5rem, 1.5vw, 0.65rem);
-            color: var(--text-secondary);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .time-badge #countdown {
-            background: rgba(0, 0, 0, 0.4);
-            color: var(--acid-lime);
-            padding: 2px clamp(10px, 2vw, 14px);
-            border-radius: 14px;
-            font-size: clamp(0.8rem, 2.2vw, 0.95rem);
-            font-weight: 900;
-            letter-spacing: 0.5px;
-            border: 1px solid rgba(184, 230, 0, 0.08);
-            font-variant-numeric: tabular-nums;
-        }
-
-        .color-party-box {
-            background: rgba(18, 18, 28, 0.5);
-            border-radius: clamp(16px, 3vw, 20px);
-            padding: clamp(10px, 2vw, 14px) clamp(10px, 2vw, 12px);
-            margin-top: clamp(8px, 1.5vw, 12px);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .color-header {
-            font-family: 'Unbounded', sans-serif;
-            font-size: clamp(0.6rem, 1.4vw, 0.7rem);
-            color: var(--text-secondary);
-            margin-bottom: clamp(8px, 1.5vw, 12px);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2px;
-            flex-wrap: wrap;
-            gap: 4px;
-        }
-
-        .color-header span:last-child {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 4px clamp(12px, 2.5vw, 18px);
-            border-radius: 20px;
-            font-weight: 900;
-            color: var(--acid-lime);
-            font-size: clamp(0.7rem, 1.6vw, 0.85rem);
-            transition: color 0.5s ease;
-        }
-
-        /* ЦВЕТА В ВИДЕ ТЕГОВ — по центру */
-        .color-tags-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: clamp(6px, 1.2vw, 10px);
-        }
-
-        .color-tag {
-            display: flex;
-            align-items: center;
-            gap: clamp(4px, 0.8vw, 6px);
-            background: rgba(0, 0, 0, 0.3);
-            padding: clamp(4px, 0.8vw, 6px) clamp(10px, 2vw, 14px) clamp(4px, 0.8vw, 6px) clamp(8px, 1.5vw, 10px);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            transition: all 0.2s ease;
-            cursor: default;
-        }
-
-        .color-tag .tag-dot {
-            width: clamp(10px, 2vw, 14px);
-            height: clamp(10px, 2vw, 14px);
-            border-radius: 50%;
-            flex-shrink: 0;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .color-tag .tag-name {
-            font-family: 'Unbounded', sans-serif;
-            font-size: clamp(0.5rem, 1.2vw, 0.6rem);
-            font-weight: 700;
-            color: var(--text-secondary);
-            letter-spacing: 0.3px;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .color-tag:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: var(--color);
-            transform: scale(1.02);
-        }
-
-        .hash-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: clamp(4px, 1vw, 6px);
-            margin-top: clamp(10px, 2vw, 14px);
-            justify-content: center;
-        }
-
-        .hash-group span {
-            background: rgba(30, 32, 48, 0.6);
-            color: var(--text-secondary);
-            padding: clamp(3px, 0.8vw, 4px) clamp(10px, 2vw, 14px);
-            border-radius: 30px;
-            font-size: clamp(0.45rem, 1.2vw, 0.55rem);
-            font-weight: 700;
-            letter-spacing: 0.3px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .wister-footer-action {
-            margin-top: clamp(14px, 3vw, 20px);
-            text-align: center;
-        }
-
-        .gift-link-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: clamp(8px, 1.5vw, 10px);
-            background: var(--acid-lime);
-            color: #0e0e18;
-            padding: clamp(14px, 2.5vw, 16px) clamp(12px, 2.5vw, 14px);
-            border-radius: clamp(24px, 5vw, 30px);
-            text-decoration: none;
-            font-family: 'Unbounded', sans-serif;
-            font-weight: 900;
-            font-size: clamp(0.6rem, 1.6vw, 0.75rem);
-            box-shadow: 0 6px 0 #0a0a12, 0 6px 20px rgba(184, 230, 0, 0.08);
-            transition: all 0.08s ease;
-            letter-spacing: 0.3px;
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-        }
-
-        .gift-link-btn:active {
-            transform: translateY(4px);
-            box-shadow: 0 2px 0 #0a0a12, 0 6px 16px rgba(184, 230, 0, 0.06);
-        }
-
-        .meta-dev {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(0.4rem, 1vw, 0.5rem);
-            color: var(--text-muted);
-            margin-top: clamp(8px, 1.5vw, 12px);
-            letter-spacing: 0.5px;
-            opacity: 0.4;
-        }
-
-        /* ============================================================
-           АДАПТИВ ДЛЯ МОБИЛЬНЫХ
-           ============================================================ */
-        @media (max-width: 480px) {
-            body {
-                padding: 10px 6px;
-                align-items: center;
-            }
-
-            .wister-poster {
-                border-radius: 28px;
-                padding: 20px 12px 16px;
-                min-height: clamp(360px, 50vh, 480px);
-            }
-
-            .time-badge {
-                justify-content: center;
-            }
-
-            .wister-star {
-                width: 24px;
-                height: 24px;
-                top: 8px;
-                right: 14px;
-            }
-
-            .data-row {
-                gap: 10px;
-            }
-
-            .wister-input {
-                font-size: 0.75rem;
-                padding: 14px 10px;
-            }
-
-            .wister-btn {
-                font-size: 0.7rem;
-                padding: 15px 10px;
-            }
-
-            .color-card {
-                flex-direction: column;
-                align-items: stretch;
-                text-align: center;
-            }
-            .color-card .card-color-dot {
-                align-self: center;
-            }
-        }
-
-        @media (max-width: 380px) {
-            .wister-poster {
-                padding: 16px 8px 14px;
-                border-radius: 24px;
-                min-height: 320px;
-            }
-
-            .wister-text {
-                font-size: 2.6rem;
-            }
-            .wister-sub {
-                font-size: 1.1rem;
-            }
-
-            .data-row .row-main {
-                font-size: 0.65rem;
-            }
-            .data-row i {
-                font-size: 0.9rem;
-                min-width: 16px;
-            }
-        }
-
-        @media (max-width: 320px) {
-            .wister-poster {
-                padding: 14px 6px 12px;
-                border-radius: 20px;
-                min-height: 280px;
-            }
-
-            .content-card {
-                padding: 10px 8px;
-                border-radius: 16px;
-            }
-
-            .hash-group span {
-                font-size: 0.4rem;
-                padding: 2px 8px;
-            }
-        }
-
-        @supports (-webkit-overflow-scrolling: touch) {
-            body {
-                -webkit-overflow-scrolling: touch;
-            }
-        }
-
-        #contentSection {
-            animation: fadeIn 0.4s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Информация об интерактиве */
         .interactive-info {
             background: rgba(18, 18, 28, 0.4);
             border-radius: clamp(14px, 2.5vw, 18px);
@@ -721,7 +1052,7 @@
 
         .interactive-info .info-title {
             font-family: 'Unbounded', sans-serif;
-            font-size: clamp(0.5rem, 1.2vw, 0.6rem);
+            font-size: var(--font-size-base);
             color: var(--acid-lime);
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -729,7 +1060,7 @@
         }
 
         .interactive-info .info-desc {
-            font-size: clamp(0.6rem, 1.5vw, 0.75rem);
+            font-size: var(--font-size-base);
             color: var(--text-secondary);
             line-height: 1.5;
         }
@@ -747,7 +1078,36 @@
             opacity: 0.7;
         }
 
-        /* === Уникальный блок для именинника === */
+        /* Таймер в основной колонке (десктоп) */
+        .time-badge-desktop {
+            background: rgba(18, 18, 28, 0.6);
+            border-radius: clamp(14px, 2.5vw, 18px);
+            padding: clamp(10px, 2vw, 12px) clamp(12px, 2.5vw, 16px);
+            margin: clamp(10px, 2vw, 14px) 0 clamp(10px, 2vw, 12px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 700;
+            font-size: var(--font-size-base);
+            color: var(--text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .time-badge-desktop #countdownDesktop {
+            background: rgba(0, 0, 0, 0.4);
+            color: var(--acid-lime);
+            padding: 2px clamp(10px, 2vw, 14px);
+            border-radius: 14px;
+            font-size: calc(var(--font-size-base) * 1.2);
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(184, 230, 0, 0.08);
+            font-variant-numeric: tabular-nums;
+        }
+
         .hero-badge {
             background: rgba(255,255,255,0.04);
             border-radius: 40px;
@@ -758,7 +1118,7 @@
             border: 1px solid rgba(255,215,0,0.2);
             margin-bottom: 12px;
             font-family: 'Unbounded', sans-serif;
-            font-size: clamp(0.5rem, 1.2vw, 0.6rem);
+            font-size: var(--font-size-base);
             color: #ffd966;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -780,7 +1140,7 @@
             background: rgba(0,0,0,0.2);
             padding: 6px 14px 6px 10px;
             border-radius: 30px;
-            font-size: clamp(0.6rem, 1.4vw, 0.7rem);
+            font-size: var(--font-size-base);
             color: var(--text-secondary);
             border-left: 3px solid var(--acid-lime);
         }
@@ -814,7 +1174,7 @@
             background: rgba(0,0,0,0.25);
             padding: 4px 14px;
             border-radius: 30px;
-            font-size: clamp(0.5rem, 1.2vw, 0.6rem);
+            font-size: var(--font-size-base);
             color: var(--text-secondary);
             border: 1px solid rgba(255,255,255,0.04);
             display: inline-flex;
@@ -825,13 +1185,274 @@
             color: var(--acid-lime);
             font-size: 0.7rem;
         }
+
+        .wister-footer-action {
+            margin-top: clamp(14px, 3vw, 20px);
+            text-align: center;
+        }
+
+        .gift-link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(8px, 1.5vw, 10px);
+            background: var(--acid-lime);
+            color: #0e0e18;
+            padding: clamp(14px, 2.5vw, 16px) clamp(12px, 2.5vw, 14px);
+            border-radius: clamp(24px, 5vw, 30px);
+            text-decoration: none;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 900;
+            font-size: var(--font-size-base);
+            box-shadow: 0 6px 0 #0a0a12, 0 6px 20px rgba(184, 230, 0, 0.08);
+            transition: all 0.08s ease;
+            letter-spacing: 0.3px;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+
+        .gift-link-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #0a0a12, 0 6px 16px rgba(184, 230, 0, 0.06);
+        }
+
+        .meta-dev {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: calc(var(--font-size-base) * 0.6);
+            color: var(--text-muted);
+            margin-top: clamp(8px, 1.5vw, 12px);
+            letter-spacing: 0.5px;
+            opacity: 0.4;
+        }
+
+        /* ============================================================
+           АДАПТИВ
+           ============================================================ */
+        @media (max-width: 768px) {
+            .poster-row {
+                flex-direction: column;
+            }
+            .weather-desktop {
+                display: none;
+            }
+            .weather-mobile-toggle {
+                display: flex;
+            }
+            #contentWrapper {
+                max-width: 100%;
+            }
+            #loginWrapper {
+                max-width: 100%;
+            }
+
+            .time-badge-mobile {
+                display: flex !important;
+            }
+            .color-party-box-mobile {
+                display: block !important;
+            }
+            .hash-group-mobile {
+                display: flex !important;
+            }
+
+            .color-party-box-main {
+                display: none !important;
+            }
+            .hash-group-main {
+                display: none !important;
+            }
+            .time-badge-desktop {
+                display: none !important;
+            }
+
+            /* Увеличиваем шрифты на мобилках */
+            .data-row .row-main {
+                font-size: var(--font-size-mobile);
+            }
+            .data-row i {
+                font-size: calc(var(--font-size-mobile) * 1.4);
+            }
+            .color-card .card-value {
+                font-size: calc(var(--font-size-mobile) * 1.2);
+            }
+            .interactive-info .info-desc {
+                font-size: var(--font-size-mobile);
+            }
+            .interactive-info .info-title {
+                font-size: var(--font-size-mobile);
+            }
+            .welcome-banner {
+                font-size: var(--font-size-mobile);
+            }
+            .wister-footer-action .gift-link-btn {
+                font-size: var(--font-size-mobile);
+            }
+            .wister-input {
+                font-size: var(--font-size-mobile);
+                padding: 14px 12px;
+            }
+            .wister-btn {
+                font-size: var(--font-size-mobile);
+                padding: 14px 12px;
+            }
+            .input-label-tech {
+                font-size: var(--font-size-mobile);
+            }
+            .system-error {
+                font-size: var(--font-size-mobile);
+            }
+            .logout-btn {
+                font-size: calc(var(--font-size-mobile) * 0.7);
+            }
+        }
+
+        @media (min-width: 769px) {
+            .weather-mobile-toggle {
+                display: none !important;
+            }
+            .weather-modal {
+                display: none !important;
+            }
+
+            .time-badge-mobile {
+                display: none !important;
+            }
+            .color-party-box-mobile {
+                display: none !important;
+            }
+            .hash-group-mobile {
+                display: none !important;
+            }
+
+            .color-party-box-main {
+                display: block !important;
+            }
+            .hash-group-main {
+                display: flex !important;
+            }
+            .time-badge-desktop {
+                display: flex !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px 6px;
+                align-items: center;
+            }
+            #contentWrapper {
+                border-radius: 28px;
+                padding: 20px 12px 16px;
+                min-height: clamp(360px, 50vh, 480px);
+            }
+            #loginWrapper {
+                border-radius: 28px;
+                padding: 20px 16px 16px;
+            }
+            .time-badge-mobile {
+                justify-content: center;
+            }
+            .wister-star {
+                width: 24px;
+                height: 24px;
+                top: 8px;
+                right: 14px;
+            }
+            .data-row {
+                gap: 10px;
+            }
+            .color-card {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .color-card .card-color-dot {
+                align-self: center;
+            }
+            .weather-mobile-toggle {
+                bottom: 16px;
+                right: 16px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            #contentWrapper {
+                padding: 16px 8px 14px;
+                border-radius: 24px;
+                min-height: 320px;
+            }
+            #loginWrapper {
+                padding: 16px 12px 14px;
+                border-radius: 24px;
+            }
+            #contentWrapper .wister-text {
+                font-size: 2.6rem;
+            }
+            #contentWrapper .wister-sub {
+                font-size: 1.1rem;
+            }
+            #loginWrapper .wister-text {
+                font-size: 2.2rem;
+            }
+            #loginWrapper .wister-sub {
+                font-size: 0.9rem;
+            }
+            .data-row .row-main {
+                font-size: var(--font-size-mobile);
+            }
+            .data-row i {
+                font-size: calc(var(--font-size-mobile) * 1.2);
+                min-width: 16px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            #contentWrapper {
+                padding: 14px 6px 12px;
+                border-radius: 20px;
+                min-height: 280px;
+            }
+            #loginWrapper {
+                padding: 12px 8px 12px;
+                border-radius: 20px;
+            }
+            .content-card {
+                padding: 10px 8px;
+                border-radius: 16px;
+            }
+            .hash-group-mobile span {
+                font-size: var(--font-size-mobile);
+                padding: 2px 8px;
+            }
+        }
+
+        #contentSection {
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .weather-loading {
+            color: var(--text-muted);
+            font-size: var(--font-size-base);
+            animation: pulse 1.2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- ============================================================
-    ФОН С ПРИЗРАКАМИ, ПАКМАНАМИ И НАДПИСЯМИ
-    ============================================================ -->
+    <!-- ФОН -->
     <div class="bg-fun-layer">
         <span class="bg-ghost" style="top: 5%; left: 3%;">👻</span>
         <span class="bg-ghost" style="top: 15%; right: 8%; animation-delay: 2s;">👻</span>
@@ -878,10 +1499,8 @@
         <span class="bg-icon" style="bottom: 25%; right: 40%;">🔥</span>
     </div>
 
-    <!-- ============================================================
-    ОСНОВНОЙ КОНТЕНТ
-    ============================================================ -->
-    <div class="wister-poster">
+    <!-- СТРАНИЦА ВХОДА (компактная подложка) -->
+    <div id="loginWrapper">
         <div class="wister-star"></div>
 
         <div class="hero-title-wrap">
@@ -890,152 +1509,470 @@
             <span class="wister-sub">19_лет</span>
         </div>
 
-        <!-- АВТОРИЗАЦИЯ -->
         <div id="loginSection" class="content-card">
             <label class="input-label-tech">
                 <i class="bi bi-shield-check"></i> Выполни вход
-                <p>&nbsp;</p>
+            </label>
+            <p>&nbsp;</p>
             <div class="input-group-custom">
                 <input type="text" id="codeInput" class="wister-input" placeholder="Введи код дружбы:" maxlength="20" autofocus inputmode="text" />
                 <button id="enterBtn" class="wister-btn"><i class="bi bi-box-arrow-in-right"></i> Войти</button>
             </div>
             <div class="system-error" id="errorMsg"></div>
         </div>
+    </div>
 
-        <!-- КОНТЕНТ МЕРОПРИЯТИЯ -->
+    <!-- ОСНОВНОЙ КОНТЕНТ (большая подложка) -->
+    <div id="contentWrapper">
+        <div class="wister-star"></div>
+
+        <div class="hero-title-wrap">
+            <span class="wister-text">Йоу_мне</span>
+            <p>&nbsp;</p>
+            <span class="wister-sub">19_лет</span>
+        </div>
+
         <div id="contentSection" class="content-card">
-            
-            <div class="welcome-banner" id="welcomeBanner">
-                <i class="bi bi-person-check-fill"></i> ДРУГ: <span id="guestName">GUEST</span>
-            </div>
 
-            <!-- БЛОК С ЦВЕТОМ (вместо пропуска) -->
-            <div class="color-card" id="colorCard">
-                <span class="card-label"><i class="bi bi-palette-fill"></i> ТВОЙ ЦВЕТ</span>
-                <span class="card-value" id="cardColorName">—</span>
-                <span class="card-color-dot" id="cardColorDot" style="background: #555;"></span>
-            </div>
+            <div class="poster-row">
+                <div class="poster-main">
 
-            <div class="data-list">
-                <div class="data-row">
-                    <i class="bi bi-calendar-check-fill"></i>
-                    <div class="row-info">
-                        <span class="row-tag">Дата</span>
-                        <span class="row-main">Пятница, 24 июля 2026</span>
+                    <div class="welcome-banner" id="welcomeBanner">
+                        <i class="bi bi-person-check-fill"></i> ДРУГ: <span id="guestName">GUEST</span>
+                        <button class="logout-btn" id="logoutBtn"><i class="bi bi-box-arrow-left"></i> Выйти</button>
                     </div>
-                </div>
-                <div class="data-row">
-                    <i class="bi bi-clock-fill"></i>
-                    <div class="row-info">
-                        <span class="row-tag">Время начала</span>
-                        <span class="row-main">10:50 <small>// Ласточка в 11:36</small></span>
-                    </div>
-                </div>
-                <div class="data-row">
-                    <i class="bi bi-geo-fill"></i>
-                    <div class="row-info">
-                        <span class="row-tag">Место встречи</span>
-                        <span class="row-main">Южный вокзал <small>(главный вход)</small></span>
-                    </div>
-                </div>
-                <div class="data-row">
-                    <i class="bi bi-compass-fill"></i>
-                    <div class="row-info">
-                        <span class="row-tag">Локация</span>
-                        <span class="row-main">Пляж Зеленоградска <small>(зеленоградск бич)</small></span>
-                    </div>
-                </div>
-            </div>
 
-            <!-- ИНФОРМАЦИЯ ОБ ИНТЕРАКТИВЕ -->
-            <div class="interactive-info">
-                <div class="info-title">
-                    <i class="bi bi-controller"></i> Интерактив
-                </div>
-                <div class="info-desc">
-                    <strong>Каждый гость — уникальный пиксель в общей системе.</strong><br />
-                    Приходи с одним эллементом одежды своего <strong class="highlight-neon">цвета</strong>, и принеси что-то, упаковка чего соответствует ему.<br />
-                    <span class="info-subtext"><i class="bi bi-fire"></i> Твой цвет загорится в карточке выше</span>
-                </div>
-            </div>
+                    <div class="color-card" id="colorCard">
+                        <span class="card-label"><i class="bi bi-palette-fill"></i> ТВОЙ ЦВЕТ</span>
+                        <span class="card-value" id="cardColorName">—</span>
+                        <span class="card-color-dot" id="cardColorDot" style="background: #555;"></span>
+                    </div>
 
-            <div class="time-badge">
-                <span><i class="bi bi-hourglass-split"></i> До тусы:</span>
-                <span id="countdown">00:00:00</span>
-            </div>
+                    <div class="data-list">
+                        <div class="data-row">
+                            <i class="bi bi-calendar-check-fill"></i>
+                            <div class="row-info">
+                                <span class="row-tag">Дата</span>
+                                <span class="row-main">Пятница, 24 июля 2026</span>
+                            </div>
+                        </div>
+                        <div class="data-row">
+                            <i class="bi bi-clock-fill"></i>
+                            <div class="row-info">
+                                <span class="row-tag">Время начала</span>
+                                <span class="row-main">10:50 <small>// Ласточка в 11:36</small></span>
+                            </div>
+                        </div>
+                        <div class="data-row">
+                            <i class="bi bi-geo-fill"></i>
+                            <div class="row-info">
+                                <span class="row-tag">Место встречи</span>
+                                <span class="row-main">Южный вокзал <small>(главный вход)</small></span>
+                            </div>
+                        </div>
+                        <div class="data-row">
+                            <i class="bi bi-compass-fill"></i>
+                            <div class="row-info">
+                                <span class="row-tag">Локация</span>
+                                <span class="row-main">Пляж Зеленоградска <small>(зеленоградск бич)</small></span>
+                            </div>
+                        </div>
+                    </div>
 
-            <!-- ЦВЕТА В ВИДЕ ТЕГОВ ПО ЦЕНТРУ -->
-            <div class="color-party-box">
-                <div class="color-header">
-                    <span><i class="bi bi-palette-fill"></i> Твой цвет:</span>
-                    <span id="userColorName">ЦВЕТ</span>
+                    <!-- ТАЙМЕР В ОСНОВНОЙ КОЛОНКЕ (десктоп) -->
+                    <div class="time-badge-desktop" id="timeBadgeDesktop">
+                        <span><i class="bi bi-hourglass-split"></i> До тусы:</span>
+                        <span id="countdownDesktop">00:00:00</span>
+                    </div>
+
+                    <!-- ТАЙМЕР В ОСНОВНОЙ КОЛОНКЕ (мобилка) -->
+                    <div class="time-badge-mobile" id="timeBadgeMobile">
+                        <span><i class="bi bi-hourglass-split"></i> До тусы:</span>
+                        <span id="countdownMobile">00:00:00</span>
+                    </div>
+
+                    <div class="interactive-info">
+                        <div class="info-title">
+                            <i class="bi bi-controller"></i> Интерактив
+                        </div>
+                        <div class="info-desc">
+                            <strong>Каждый гость — уникальный пиксель в общей системе.</strong><br />
+                            Приходи с одним элементом одежды своего <strong class="highlight-neon">цвета</strong>, и принеси что-то, упаковка чего соответствует ему.<br />
+                            <span class="info-subtext"><i class="bi bi-fire"></i> Твой цвет загорится в карточке выше</span>
+                        </div>
+                    </div>
+
+                    <!-- ПОЛНОЦЕННЫЙ БЛОК ЦВЕТОВ В ОСНОВНОЙ КОЛОНКЕ (десктоп) -->
+                    <div class="color-party-box-main" id="colorPartyBoxMain">
+                        <div class="color-header-main">
+                            <span><i class="bi bi-palette-fill"></i> Твой цвет:</span>
+                            <span id="userColorNameMain">ЦВЕТ</span>
+                        </div>
+                        <div class="color-tags-wrapper-main">
+                            <div class="color-tag-main" style="--color: #FFC0CB;">
+                                <span class="tag-dot" style="background: #FFC0CB;"></span>
+                                <span class="tag-name">РОЗОВЫЙ</span>
+                            </div>
+                            <div class="color-tag-main" style="--color: #FF6715;">
+                                <span class="tag-dot" style="background: #FF6715;"></span>
+                                <span class="tag-name">ОРАНЖЕВЫЙ</span>
+                            </div>
+                            <div class="color-tag-main" style="--color: #1E90FF;">
+                                <span class="tag-dot" style="background: #1E90FF;"></span>
+                                <span class="tag-name">СИНИЙ</span>
+                            </div>
+                            <div class="color-tag-main" style="--color: #FFEF36;">
+                                <span class="tag-dot" style="background: #FFEF36;"></span>
+                                <span class="tag-name">ЖЁЛТЫЙ</span>
+                            </div>
+                            <div class="color-tag-main" style="--color: #00CF20;">
+                                <span class="tag-dot" style="background: #00CF20;"></span>
+                                <span class="tag-name">ЗЕЛЁНЫЙ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ПОЛНОЦЕННЫЙ БЛОК ЦВЕТОВ В ОСНОВНОЙ КОЛОНКЕ (мобилка) -->
+                    <div class="color-party-box-mobile" id="colorPartyBoxMobile">
+                        <div class="color-header-mobile">
+                            <span><i class="bi bi-palette-fill"></i> Твой цвет:</span>
+                            <span id="userColorNameMobile">ЦВЕТ</span>
+                        </div>
+                        <div class="color-tags-wrapper-mobile">
+                            <div class="color-tag-mobile" style="--color: #FFC0CB;">
+                                <span class="tag-dot" style="background: #FFC0CB;"></span>
+                                <span class="tag-name">РОЗОВЫЙ</span>
+                            </div>
+                            <div class="color-tag-mobile" style="--color: #FF6715;">
+                                <span class="tag-dot" style="background: #FF6715;"></span>
+                                <span class="tag-name">ОРАНЖЕВЫЙ</span>
+                            </div>
+                            <div class="color-tag-mobile" style="--color: #1E90FF;">
+                                <span class="tag-dot" style="background: #1E90FF;"></span>
+                                <span class="tag-name">СИНИЙ</span>
+                            </div>
+                            <div class="color-tag-mobile" style="--color: #FFEF36;">
+                                <span class="tag-dot" style="background: #FFEF36;"></span>
+                                <span class="tag-name">ЖЁЛТЫЙ</span>
+                            </div>
+                            <div class="color-tag-mobile" style="--color: #00CF20;">
+                                <span class="tag-dot" style="background: #00CF20;"></span>
+                                <span class="tag-name">ЗЕЛЁНЫЙ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ХЕШТЕГИ В ОСНОВНОЙ КОЛОНКЕ (десктоп) -->
+                    <div class="hash-group-main">
+                        <span>#PIZZA</span>
+                        <span>#CHILL</span>
+                        <span>#SEA</span>
+                        <span>#SUNSET</span>
+                    </div>
+
+                    <!-- ХЕШТЕГИ В ОСНОВНОЙ КОЛОНКЕ (мобилка) -->
+                    <div class="hash-group-mobile" id="hashGroupMobile">
+                        <span>#PIZZA</span>
+                        <span>#CHILL</span>
+                        <span>#SEA</span>
+                        <span>#SUNSET</span>
+                    </div>
+
+                    <div class="wister-footer-action">
+                        <a href="https://followish.io/mywishlist/9s4khahrkgprov" class="gift-link-btn" target="_blank">
+                            <i class="bi bi-gift-fill"></i> Открыть вишлист
+                        </a>
+                        <div class="meta-dev">
+                            <i class="bi bi-code-slash"></i> // BUILD_VERSION 2026.19 // MADE WITH ART.FOMA
+                        </div>
+                    </div>
+
                 </div>
-                <div class="color-tags-wrapper">
-                    <div class="color-tag" style="--color: #FFC0CB;">
-                        <span class="tag-dot" style="background: #FFC0CB;"></span>
-                        <span class="tag-name">РОЗОВЫЙ</span>
-                    </div>
-                    <div class="color-tag" style="--color: #FF6715;">
-                        <span class="tag-dot" style="background: #FF6715;"></span>
-                        <span class="tag-name">ОРАНЖЕВЫЙ</span>
-                    </div>
-                    <div class="color-tag" style="--color: #1E90FF;">
-                        <span class="tag-dot" style="background: #1E90FF;"></span>
-                        <span class="tag-name">СИНИЙ</span>
-                    </div>
-                    <div class="color-tag" style="--color: #FFEF36;">
-                        <span class="tag-dot" style="background: #FFEF36;"></span>
-                        <span class="tag-name">ЖЁЛТЫЙ</span>
-                    </div>
-                    <div class="color-tag" style="--color: #00CF20;">
-                        <span class="tag-dot" style="background: #00CF20;"></span>
-                        <span class="tag-name">ЗЕЛЁНЫЙ</span>
-                    </div>
-                </div>
-            </div>
 
-            <div class="hash-group">
-                <span>#PIZZA</span>
-                <span>#CHILL</span>
-                <span>#SEA</span>
-                <span>#SUNSET</span>
-            </div>
+                <!-- ВИДЖЕТ ПОГОДЫ — ДЕСКТОП -->
+                <div class="weather-desktop" id="weatherDesktop">
+                    <div class="weather-icon-big" id="wIcon">⏳</div>
+                    <div class="weather-temp-big" id="wTemp">--<sup>°C</sup></div>
+                    <div class="weather-desc-big" id="wDesc">загрузка...</div>
+                    <div class="weather-details">
+                        <div class="weather-detail"><i class="bi bi-droplet"></i><span>Влажность</span><span id="wHumidity">--</span></div>
+                        <div class="weather-detail"><i class="bi bi-wind"></i><span>Ветер</span><span id="wWind">--</span></div>
+                        <div class="weather-detail"><i class="bi bi-thermometer-half"></i><span>Ощущается</span><span id="wFeels">--</span></div>
+                    </div>
+                    <div class="weather-badge" id="wBadge">🌊 Зеленоградск</div>
 
-            <div class="wister-footer-action">
-                <a href="https://followish.io/mywishlist/9s4khahrkgprov" class="gift-link-btn" target="_blank">
-                    <i class="bi bi-gift-fill"></i> Открыть вишлист
-                </a>
-                <div class="meta-dev">
-                    <i class="bi bi-code-slash"></i> // BUILD_VERSION 2026.19 // MADE WITH ART.FOMA
+                    <!-- КОМПАКТНЫЙ БЛОК ЦВЕТОВ В ПРАВОЙ КОЛОНКЕ -->
+                    <div class="color-tags-compact">
+                        <span class="color-dot" style="background: #FFC0CB;" title="РОЗОВЫЙ"></span>
+                        <span class="color-dot" style="background: #FF6715;" title="ОРАНЖЕВЫЙ"></span>
+                        <span class="color-dot" style="background: #1E90FF;" title="СИНИЙ"></span>
+                        <span class="color-dot" style="background: #FFEF36;" title="ЖЁЛТЫЙ"></span>
+                        <span class="color-dot" style="background: #00CF20;" title="ЗЕЛЁНЫЙ"></span>
+                        <span class="color-label-compact">твой цвет выделен</span>
+                    </div>
                 </div>
             </div>
 
         </div>
     </div>
 
+    <!-- МОБИЛЬНАЯ КНОПКА ПОГОДЫ -->
+    <button class="weather-mobile-toggle" id="weatherToggle" aria-label="Погода">
+        <i class="bi bi-cloud-sun"></i>
+    </button>
+
+    <!-- МОДАЛЬНОЕ ОКНО ПОГОДЫ -->
+    <div class="weather-modal" id="weatherModal">
+        <div class="weather-modal-content">
+            <button class="weather-modal-close" id="weatherModalClose">&times;</button>
+            <div class="modal-icon" id="mIcon">⏳</div>
+            <div class="modal-temp" id="mTemp">--<sup>°C</sup></div>
+            <div class="modal-desc" id="mDesc">загрузка...</div>
+            <div class="modal-details">
+                <div class="detail-row"><span><i class="bi bi-droplet"></i> Влажность</span><span id="mHumidity">--</span></div>
+                <div class="detail-row"><span><i class="bi bi-wind"></i> Ветер</span><span id="mWind">--</span></div>
+                <div class="detail-row"><span><i class="bi bi-thermometer-half"></i> Ощущается</span><span id="mFeels">--</span></div>
+                <div class="detail-row"><span><i class="bi bi-sun"></i> УФ-индекс</span><span id="mUv">--</span></div>
+                <div class="detail-row"><span><i class="bi bi-cloud-rain"></i> Осадки</span><span id="mRain">--</span></div>
+            </div>
+            <div class="modal-badge" id="mBadge">🌊 Зеленоградск</div>
+        </div>
+    </div>
+
     <script>
+        // ============================================================
+        // 1. OPEN-METEO API — ПРОГНОЗ НА 24 ИЮЛЯ 2026
+        // ============================================================
+        const LAT = 54.959;
+        const LON = 20.477;
+        const TARGET_DATE = '2026-07-24';
+
+        const WEATHER_URL =
+            `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}` +
+            `&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,` +
+            `sunrise,sunset,uv_index_max,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,wind_direction_10m_dominant` +
+            `&timezone=Europe/Kaliningrad` +
+            `&start_date=${TARGET_DATE}&end_date=${TARGET_DATE}`;
+
+        // ============================================================
+        // 2. ЗАГРУЗКА ПОГОДЫ
+        // ============================================================
+        async function fetchWeather() {
+            try {
+                const resp = await fetch(WEATHER_URL);
+                if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+                const data = await resp.json();
+
+                if (!data.daily) throw new Error('Нет данных прогноза');
+
+                const day = 0;
+
+                const weatherCode = data.daily.weathercode?.[day] ?? 0;
+                const maxTemp = data.daily.temperature_2m_max?.[day] !== undefined ? 
+                    Math.round(data.daily.temperature_2m_max[day]) : '--';
+                const minTemp = data.daily.temperature_2m_min?.[day] !== undefined ? 
+                    Math.round(data.daily.temperature_2m_min[day]) : '--';
+                const feelsMax = data.daily.apparent_temperature_max?.[day] !== undefined ? 
+                    Math.round(data.daily.apparent_temperature_max[day]) : '--';
+                const feelsMin = data.daily.apparent_temperature_min?.[day] !== undefined ? 
+                    Math.round(data.daily.apparent_temperature_min[day]) : '--';
+                const humidity = '--';
+                const windSpeed = data.daily.wind_speed_10m_max?.[day] !== undefined ? 
+                    data.daily.wind_speed_10m_max[day] : '--';
+                const windDir = data.daily.wind_direction_10m_dominant?.[day] !== undefined ? 
+                    degToCompass(data.daily.wind_direction_10m_dominant[day]) : '';
+                const uv = data.daily.uv_index_max?.[day] !== undefined ? 
+                    Math.round(data.daily.uv_index_max[day]) : '--';
+                const rain = data.daily.precipitation_sum?.[day] !== undefined ? 
+                    data.daily.precipitation_sum[day] : '--';
+                const rainProb = data.daily.precipitation_probability_max?.[day] !== undefined ? 
+                    Math.round(data.daily.precipitation_probability_max[day]) : '--';
+                const sunrise = data.daily.sunrise?.[day] || '--';
+                const sunset = data.daily.sunset?.[day] || '--';
+
+                const { desc, icon } = getWeatherInfo(weatherCode);
+
+                const avgTemp = Math.round((maxTemp + minTemp) / 2);
+                const windStr = windSpeed !== '--' ? `${windSpeed.toFixed(1)} м/с ${windDir}` : '--';
+
+                return {
+                    temp: String(avgTemp),
+                    maxTemp: String(maxTemp),
+                    minTemp: String(minTemp),
+                    feels: feelsMax !== '--' && feelsMin !== '--' ? 
+                        `${feelsMin}…${feelsMax}°C` : '--',
+                    humidity: humidity,
+                    wind: windStr,
+                    desc: desc,
+                    icon: icon,
+                    uv: uv !== '--' ? `${uv} (средний)` : '--',
+                    rain: rain !== '--' ? `${rain} мм` : '--',
+                    rainProb: rainProb !== '--' ? `${rainProb}%` : '--',
+                    sunrise: sunrise !== '--' ? formatTime(sunrise) : '--',
+                    sunset: sunset !== '--' ? formatTime(sunset) : '--',
+                    badge: `🌊 Зеленоградск • ${minTemp}…${maxTemp}°C`
+                };
+            } catch (err) {
+                console.error('Ошибка загрузки погоды:', err);
+                return null;
+            }
+        }
+
+        // ============================================================
+        // 3. ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+        // ============================================================
+        function degToCompass(deg) {
+            const dirs = ['С', 'С-В', 'В', 'Ю-В', 'Ю', 'Ю-З', 'З', 'С-З'];
+            const idx = Math.round((deg % 360) / 45) % 8;
+            return dirs[idx];
+        }
+
+        function formatTime(isoString) {
+            if (!isoString || isoString === '--') return '--';
+            try {
+                const date = new Date(isoString);
+                return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+            } catch (_) {
+                return '--';
+            }
+        }
+
+        function getWeatherInfo(code) {
+            const map = {
+                0: { desc: 'Ясно', icon: '☀️' },
+                1: { desc: 'Преимущественно ясно', icon: '🌤️' },
+                2: { desc: 'Переменная облачность', icon: '⛅' },
+                3: { desc: 'Пасмурно', icon: '☁️' },
+                45: { desc: 'Туман', icon: '🌫️' },
+                48: { desc: 'Иней', icon: '🌫️' },
+                51: { desc: 'Морось', icon: '🌦️' },
+                53: { desc: 'Морось', icon: '🌦️' },
+                55: { desc: 'Морось', icon: '🌧️' },
+                56: { desc: 'Ледяная морось', icon: '🌧️' },
+                57: { desc: 'Ледяная морось', icon: '🌧️' },
+                61: { desc: 'Небольшой дождь', icon: '🌦️' },
+                63: { desc: 'Дождь', icon: '🌧️' },
+                65: { desc: 'Сильный дождь', icon: '🌧️' },
+                66: { desc: 'Ледяной дождь', icon: '🌧️' },
+                67: { desc: 'Ледяной дождь', icon: '🌧️' },
+                71: { desc: 'Небольшой снег', icon: '🌨️' },
+                73: { desc: 'Снег', icon: '🌨️' },
+                75: { desc: 'Сильный снег', icon: '❄️' },
+                77: { desc: 'Снежная крупа', icon: '🌨️' },
+                80: { desc: 'Ливень', icon: '⛈️' },
+                81: { desc: 'Ливень', icon: '⛈️' },
+                82: { desc: 'Сильный ливень', icon: '⛈️' },
+                85: { desc: 'Снегопад', icon: '🌨️' },
+                86: { desc: 'Снегопад', icon: '❄️' },
+                95: { desc: 'Гроза', icon: '⛈️' },
+                96: { desc: 'Гроза с градом', icon: '⛈️' },
+                99: { desc: 'Гроза с градом', icon: '⛈️' }
+            };
+            return map[code] || { desc: 'Неизвестно', icon: '🌤️' };
+        }
+
+        // ============================================================
+        // 4. ОБНОВЛЕНИЕ ВИДЖЕТОВ
+        // ============================================================
+        function updateWeatherUI(w) {
+            const fallback = {
+                temp: '--',
+                maxTemp: '--',
+                minTemp: '--',
+                feels: '--',
+                humidity: '--',
+                wind: '--',
+                desc: 'нет данных',
+                icon: '❓',
+                uv: '--',
+                rain: '--',
+                rainProb: '--',
+                sunrise: '--',
+                sunset: '--',
+                badge: '🌊 Зеленоградск'
+            };
+            const data = w || fallback;
+
+            document.getElementById('wIcon').textContent = data.icon;
+            document.getElementById('wTemp').innerHTML = `${data.temp}<sup>°C</sup>`;
+            document.getElementById('wDesc').textContent = data.desc;
+            document.getElementById('wHumidity').textContent = data.humidity;
+            document.getElementById('wWind').textContent = data.wind;
+            document.getElementById('wFeels').textContent = data.feels;
+            document.getElementById('wBadge').textContent = data.badge;
+
+            document.getElementById('mIcon').textContent = data.icon;
+            document.getElementById('mTemp').innerHTML = `${data.temp}<sup>°C</sup>`;
+            document.getElementById('mDesc').textContent = data.desc;
+            document.getElementById('mHumidity').textContent = data.humidity;
+            document.getElementById('mWind').textContent = data.wind;
+            document.getElementById('mFeels').textContent = data.feels;
+            document.getElementById('mUv').textContent = data.uv;
+            document.getElementById('mRain').textContent = data.rainProb !== '--' ? `${data.rainProb} (${data.rain})` : data.rain;
+            document.getElementById('mBadge').textContent = `🌅 ${data.sunrise} • 🌇 ${data.sunset}`;
+        }
+
+        // ============================================================
+        // 5. ЗАПУСК ПОГОДЫ
+        // ============================================================
+        (async function initWeather() {
+            const data = await fetchWeather();
+            updateWeatherUI(data);
+        })();
+
+        // ============================================================
+        // 6. ЛОГИКА МОДАЛЬНОГО ОКНА
+        // ============================================================
+        const modal = document.getElementById('weatherModal');
+        const toggleBtn = document.getElementById('weatherToggle');
+        const closeBtn = document.getElementById('weatherModalClose');
+
+        function openModal() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        toggleBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // ============================================================
+        // 7. АВТОРИЗАЦИЯ, ВЫХОД И ТАЙМЕР
+        // ============================================================
         const friends = {
             'ВРЕДИНА': { name: 'Танюшка', colorName: 'РОЗОВЫЙ', hex: '#FFC0CB' },
             'ДАШК1_5': { name: 'Даша', colorName: 'ОРАНЖЕВЫЙ', hex: '#FF6715' },
             'МАКСЮША': { name: 'МакZ', colorName: 'СИНИЙ', hex: '#1E90FF' },
             'ВИКА': { name: 'Вика', colorName: 'ЖЁЛТЫЙ', hex: '#FFEF36' },
             'ДАНЬКА': { name: 'Данька', colorName: 'ЗЕЛЁНЫЙ', hex: '#00CF20' },
-            'ГЕНИЙ067': { name: 'ИМЕНИННИК', colorName: 'БЕЛЫЙ', hex: '#ffffff' }
+            'ГЕНИЙ067': { name: 'ИМЕННИННИК', colorName: 'БЕЛЫЙ', hex: '#ffffff' }
         };
 
-        const loginSection = document.getElementById('loginSection');
-        const contentSection = document.getElementById('contentSection');
+        const loginWrapper = document.getElementById('loginWrapper');
+        const contentWrapper = document.getElementById('contentWrapper');
         const codeInput = document.getElementById('codeInput');
         const enterBtn = document.getElementById('enterBtn');
         const errorMsg = document.getElementById('errorMsg');
+        const logoutBtn = document.getElementById('logoutBtn');
 
         const guestNameSpan = document.getElementById('guestName');
-        const userColorName = document.getElementById('userColorName');
-        const countdownEl = document.getElementById('countdown');
+        const userColorNameMain = document.getElementById('userColorNameMain');
+        const userColorNameMobile = document.getElementById('userColorNameMobile');
+        const countdownDesktopEl = document.getElementById('countdownDesktop');
+        const countdownMobileEl = document.getElementById('countdownMobile');
         const welcomeBanner = document.getElementById('welcomeBanner');
         const colorCard = document.getElementById('colorCard');
         const cardColorName = document.getElementById('cardColorName');
         const cardColorDot = document.getElementById('cardColorDot');
+
+        let countdownInterval = null;
 
         function login() {
             const rawCode = codeInput.value.trim().toUpperCase();
@@ -1047,12 +1984,12 @@
             }
 
             errorMsg.textContent = '';
-            loginSection.style.display = 'none';
-            contentSection.style.display = 'block';
+            loginWrapper.style.display = 'none';
+            contentWrapper.style.display = 'flex';
 
-            // Обновляем данные
             guestNameSpan.textContent = friend.name.toUpperCase();
-            userColorName.textContent = friend.colorName;
+            userColorNameMain.textContent = friend.colorName;
+            userColorNameMobile.textContent = friend.colorName;
 
             const colorHex = friend.hex || '#555';
             cardColorName.textContent = friend.colorName;
@@ -1064,12 +2001,31 @@
             welcomeBanner.style.background = colorHex;
             welcomeBanner.style.boxShadow = `0 4px 0 rgba(0,0,0,0.2), 0 0 40px ${colorHex}33`;
 
-            document.querySelector('.color-header span:last-child').style.color = colorHex;
+            // Подсвечиваем цвет в компактном блоке правой колонки
+            document.querySelectorAll('.color-tags-compact .color-dot').forEach(dot => {
+                dot.style.opacity = '0.3';
+                dot.style.transform = 'scale(0.85)';
+                dot.style.boxShadow = 'none';
+            });
+            const colorMap = {
+                '#FFC0CB': 0,
+                '#FF6715': 1,
+                '#1E90FF': 2,
+                '#FFEF36': 3,
+                '#00CF20': 4
+            };
+            const dots = document.querySelectorAll('.color-tags-compact .color-dot');
+            const idx = colorMap[colorHex];
+            if (idx !== undefined && dots[idx]) {
+                dots[idx].style.opacity = '1';
+                dots[idx].style.transform = 'scale(1.2)';
+                dots[idx].style.boxShadow = `0 0 20px ${colorHex}66`;
+            }
 
             document.querySelectorAll('.data-row i').forEach(icon => {
                 icon.style.color = colorHex;
             });
-            
+
             if (rawCode === 'ГЕНИЙ067') {
                 const existingHero = document.getElementById('heroBlock');
                 if (!existingHero) {
@@ -1079,38 +2035,66 @@
                     heroBlock.innerHTML = `
                         <div class="hero-badge"><i class="bi bi-crown-fill"></i> ДЕНЬ РОЖДЕНИЯ</div>
                         <div style="background:rgba(255,255,255,0.03);border-radius:20px;padding:12px 14px;border:1px solid rgba(255,215,0,0.08);">
-                            <div style="font-family:'Unbounded',sans-serif;font-size:clamp(0.65rem,1.6vw,0.8rem);color:var(--text-primary);margin-bottom:8px;display:flex;align-items:center;gap:8px;">
+                            <div style="font-family:'Unbounded',sans-serif;font-size:var(--font-size-base);color:var(--text-primary);margin-bottom:8px;display:flex;align-items:center;gap:8px;">
                                 <i class="bi bi-list-check" style="color:var(--acid-lime);"></i> ЧТО ВЗЯТЬ С СОБОЙ
                             </div>
                             <div class="list-grid">
-                                <div class="list-item"> <span class="item-label">Зонт пляжный </span> <span class="item-desc">SPF 50+</span></div>
-                                <div class="list-item"> <span class="item-label">Много воды</span> <span class="item-desc">2+ литра</span></div>
-                                <div class="list-item"> <span class="item-label"></span> <span class="item-desc">плейлист в кармане</span></div>
-                                <div class="list-item"> <span class="item-label">Зонт/тент</span> <span class="item-desc">если припечёт</span></div>
-                                <div class="list-item"> <span class="item-label">Камера или плёнка</span> <span class="item-desc">для моментов</span></div>
+                                <div class="list-item"> <span class="item-label">Зонт пляжный </span> <span class="item-desc">ЕСЛИ БУДЕТ СОЛНЦЕ</span></div>
+                                <div class="list-item"> <span class="item-label">Много воды</span> <span class="item-desc">2 литра</span></div>
+                                <div class="list-item"> <span class="item-label">Одежда по погоде </span> <span class="item-desc">Чтобы не мерзнуть</span></div>
+                                <div class="list-item"> <span class="item-label">Одноразовые стаканы </span> <span class="item-desc"> 6 штук </span></div>
+                                <div class="list-item"> <span class="item-label">Пакет </span> <span class="item-desc"> для мусора </span></div>
                             </div>
                             <hr class="divider-light" />
-                            <div style="font-family:'Unbounded',sans-serif;font-size:clamp(0.55rem,1.3vw,0.65rem);color:var(--text-muted);display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-                                <i class="bi bi-bag-fill" style="color:var(--acid-lime);"></i> СПИСОК ПОКУПОК (для всех)
+                            <div style="font-family:'Unbounded',sans-serif;font-size:var(--font-size-base);color:var(--text-muted);display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                                <i class="bi bi-bag-fill" style="color:var(--acid-lime);"></i> СПИСОК ПОКУПОК 
                             </div>
                             <div class="shopping-row">
                                 <span> Кола 2л</span>
-                                <span> Чтото, пить из б/а</span>
-                                <span>Пицца (4 шт)</span>
-                                <span>Стаканы одноразовые </span>
+                                <span> Соки(яблоко\виноград\томатный)</span>
+                                <span> Пиво</span>
+                                <span> Стаканы одноразовые </span>
+                                <span> Пицца (4 штуки - 35 см) - 4080 без ск-ки</span>
                             </div>
                         </div>
                     `;
-                    // вставляем после welcomeBanner
                     welcomeBanner.parentNode.insertBefore(heroBlock, welcomeBanner.nextSibling);
                 }
             } else {
-        
                 const heroBlock = document.getElementById('heroBlock');
                 if (heroBlock) heroBlock.remove();
             }
 
             startCountdown();
+        }
+
+        function logout() {
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+                countdownInterval = null;
+            }
+            
+            contentWrapper.style.display = 'none';
+            loginWrapper.style.display = 'flex';
+            
+            codeInput.value = '';
+            errorMsg.textContent = '';
+            
+            const heroBlock = document.getElementById('heroBlock');
+            if (heroBlock) heroBlock.remove();
+            
+            colorCard.classList.remove('active');
+            colorCard.style.borderColor = '';
+            cardColorDot.style.background = '#555';
+            cardColorDot.style.boxShadow = 'none';
+            
+            document.querySelectorAll('.color-tags-compact .color-dot').forEach(dot => {
+                dot.style.opacity = '0.3';
+                dot.style.transform = 'scale(0.85)';
+                dot.style.boxShadow = 'none';
+            });
+            
+            setTimeout(() => codeInput.focus(), 100);
         }
 
         function startCountdown() {
@@ -1125,36 +2109,56 @@
                 const minutes = Math.floor((diff / (1000 * 60)) % 60);
                 const seconds = Math.floor((diff / 1000) % 60);
 
+                let timeStr;
                 if (days > 0) {
-                    countdownEl.textContent = `${days}d ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+                    timeStr = `${days}d ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
                 } else {
-                    countdownEl.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                    timeStr = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
                 }
 
                 if (diff <= 0) {
-                    countdownEl.textContent = 'LAUNCHED 🚀';
+                    timeStr = 'LAUNCHED 🚀';
                 }
+
+                if (countdownDesktopEl) countdownDesktopEl.textContent = timeStr;
+                if (countdownMobileEl) countdownMobileEl.textContent = timeStr;
             }
 
             update();
-            setInterval(update, 1000);
+            if (countdownInterval) clearInterval(countdownInterval);
+            countdownInterval = setInterval(update, 1000);
         }
 
         enterBtn.addEventListener('click', login);
         codeInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') login(); });
+        logoutBtn.addEventListener('click', logout);
 
         codeInput.addEventListener('input', () => { errorMsg.textContent = ''; });
         codeInput.addEventListener('focus', () => { errorMsg.textContent = ''; });
 
-        window.addEventListener('load', () => { 
+        window.addEventListener('load', () => {
             setTimeout(() => codeInput.focus(), 100);
         });
 
-        document.querySelectorAll('.wister-btn, .gift-link-btn').forEach(el => {
+        document.querySelectorAll('.wister-btn, .gift-link-btn, .logout-btn').forEach(el => {
             el.addEventListener('touchstart', function(e) {
                 if (navigator.vibrate) navigator.vibrate(10);
             }, { passive: true });
         });
+
+        function handleResize() {
+            const isMobile = window.innerWidth <= 768;
+            const toggle = document.getElementById('weatherToggle');
+            if (isMobile) {
+                toggle.style.display = 'flex';
+            } else {
+                toggle.style.display = 'none';
+                if (modal.classList.contains('active')) closeModal();
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
     </script>
 </body>
 </html>
